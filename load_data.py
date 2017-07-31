@@ -1,3 +1,6 @@
+# Author: Mostafa Mahmoud Ibrahim Hassan
+# Email: mostafa_mahmoud@protonmail.com
+
 import os
 import numpy as np
 import pandas as pd

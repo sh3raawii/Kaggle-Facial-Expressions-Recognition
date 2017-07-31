@@ -1,2 +1,3 @@
 # ignore project files
 .idea
+__pycache__
