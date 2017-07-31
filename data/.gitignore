@@ -1,4 +1,9 @@
 # ignore all files in this directory except for this one
 *
 !.gitignore
-
+!Images
+!Images/PrivateTest
+!Images/PublicTest
+!Images/Training
+!Images/clean.sh
+!Images/generate_images.sh
