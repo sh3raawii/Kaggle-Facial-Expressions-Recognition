@@ -23,10 +23,11 @@ def load_data_from_csv(path="data/fer2013.csv", filter_dataset=False):
     assert os.path.isfile(path)
     df = pd.read_csv(path)
 
+    # filter the data
     if filter_dataset:
         bad_data_indices = get_bad_samples()
         if bad_data_indices is not None:
-            pass
+            df.drop(df.index[bad_data_indices.tolist()])
 
     # Data Transformation
     train_x = df.loc[df['Usage'].isin(['Training', 'PublicTest']), ['pixels']]
@@ -198,6 +199,12 @@ def print_summary(train_y, test_y):
 class DataLoader:
     @staticmethod
     def load_data(csv_path="data/fer2013.csv", filter_dataset=True):
+        """
+        load the data from npy files if available otherwise load from csv, filter the data and generate npy files.
+        :param csv_path: a relative path to the csv file from the project directory
+        :param filter_dataset: boolean flag whether to filter the data or not.
+        :return: numpy arrays
+        """
         if check_if_data_available_in_npy():
             train_x, train_y, test_x, test_y = load_data_from_npy()
         else:
@@ -207,6 +214,12 @@ class DataLoader:
 
     @staticmethod
     def reset(csv_path="data/fer2013.csv", filter_dataset=True):
+        """
+        Load the data from csv and generate the npy files after filtering the data.
+        :param csv_path: a relative path to the csv file from the project directory
+        :param filter_dataset: boolean flag whether to filter the data or not.
+        :return: numpy arrays
+        """
         remove_npy_files()
         train_x, train_y, test_x, test_y = load_data_from_csv(csv_path, filter_dataset=filter_dataset)
         save_data_to_npy(train_x, train_y, test_x, test_y)
@@ -225,7 +238,7 @@ if __name__ == '__main__':
     print_summary(y_train, y_test)
 
     # visualize the dataset
-    visualize_data()
+    # visualize_data()
 
     # visualize bad data in the dataset
     visualize_bad_data()
