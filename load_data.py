@@ -27,7 +27,7 @@ def load_data_from_csv(path="data/fer2013.csv", filter_dataset=False):
     if filter_dataset:
         bad_data_indices = get_bad_samples()
         if bad_data_indices is not None:
-            df.drop(df.index[bad_data_indices.tolist()])
+            df = df.drop(df.index[bad_data_indices.tolist()])
 
     # Data Transformation
     train_x = df.loc[df['Usage'].isin(['Training', 'PublicTest']), ['pixels']]
