@@ -25,3 +25,12 @@ def square_image(image):
         image = cv.copyMakeBorder(image, padding[0], padding[1], padding[2], padding[3], cv.BORDER_CONSTANT,
                                   value=(0, 0, 0))
     return image, padding
+
+
+def display_image(image):
+    """
+    display image and wait for a key press.
+    :param image: numpy array
+    """
+    cv.imshow("image", image)
+    cv.waitKey(0)

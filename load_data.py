@@ -201,6 +201,7 @@ class DataLoader:
     def load_data(csv_path="data/fer2013.csv", filter_dataset=True):
         """
         load the data from npy files if available otherwise load from csv, filter the data and generate npy files.
+        note that this method doesn't guarantee the data loaded will be updated using current filtering data.
         :param csv_path: a relative path to the csv file from the project directory
         :param filter_dataset: boolean flag whether to filter the data or not.
         :return: numpy arrays
@@ -213,9 +214,10 @@ class DataLoader:
         return train_x, train_y, test_x, test_y
 
     @staticmethod
-    def reset(csv_path="data/fer2013.csv", filter_dataset=True):
+    def load_data_csv(csv_path="data/fer2013.csv", filter_dataset=True):
         """
         Load the data from csv and generate the npy files after filtering the data.
+        note that this method guarantees the data will be updated using current filtering data.
         :param csv_path: a relative path to the csv file from the project directory
         :param filter_dataset: boolean flag whether to filter the data or not.
         :return: numpy arrays
